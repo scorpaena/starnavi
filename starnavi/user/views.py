@@ -24,7 +24,7 @@ class UserLastLoginTimeView(generics.ListAPIView):
 class LoginAndTokenObtain(TokenObtainPairView):
     '''TokenObtainPairView inherits from GenericAPIView and returns 
     "access" and "refresh" JSON web token pair. This class was customized
-    to get the JSON web token pair right after user login
+    to get the JSON web token pair right after user has been logged-in
     '''
     def post(self, request, *args, **kwargs):
         email = request.data.get('email')
