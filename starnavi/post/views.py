@@ -5,7 +5,7 @@ from user.models import User
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from django.utils.timezone import datetime
-from django.contrib.sessions.models import Session
+# from django.contrib.sessions.models import Session
 from .models import Post, PostLikes
 # from .filters import PostFilter
 from .serializers import (
