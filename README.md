@@ -12,6 +12,7 @@ Requirements
   https://www.tecmint.com/install-postman-on-linux-desktop/
 3. Run the migration:
   `python manage.py migrate`
+4. The project uses default insecure SECRET_KEY. To make it secure, create `.env` file according to the `.env.example`. Also refer to [this link](https://www.youtube.com/watch?v=5iWhQWVXosU&t=0s) for detailed information (note: for Ubuntu use `.bashrc` instead of `.bash_profile`)
 
 Instructions
 ------------
