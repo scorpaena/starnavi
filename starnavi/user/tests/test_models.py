@@ -31,10 +31,6 @@ class UserModelTest(TestCase):
             self.assertIsNone(user.username)
         except AttributeError:
             pass
-        with self.assertRaises(TypeError):
-            User.objects.create_user()
-        with self.assertRaises(TypeError):
-            User.objects.create_user(email='')
         with self.assertRaises(ValidationError):
             User.objects.create_user(
                 email='', 

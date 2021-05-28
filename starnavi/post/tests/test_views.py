@@ -23,7 +23,7 @@ class PostTestCase(TestCase):
  
        
         self.token = AccessToken.for_user(self.user)
-        self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + str(self.token))
+        self.client.credentials(HTTP_AUTHORIZATION='Bearer '+ str(self.token))
 
         
         self.payload_post = {
@@ -53,13 +53,11 @@ class PostTestCase(TestCase):
         self.assertEqual(request.status_code, 401)
 
     def test_post_get(self):
-        # checks the HTTP 200 status and amount of items=1 in queryset
         response = self.client.get('/post/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data['count'], 1)
 
     def test_post_get_anonymous(self):
-        # checks the HTTP 200 status and amount of items=1 in queryset
         response = self.client_anonymous.get('/post/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data['count'], 1)
@@ -155,4 +153,13 @@ class PostTestCase(TestCase):
         self.assertEqual(request.status_code, 401)
         post_like = PostLikes.objects.get(user=self.user, post=self.post)
         self.assertTrue(isinstance(post_like, PostLikes))
+
+    def test_postlike_by_date(self):
+        PostLikes.objects.create(**self.payload_post_like)
+        response = self.client.get(
+            '/post/{}/{}'.format(today, today), 
+            follow = True
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data['count'], 1)
 

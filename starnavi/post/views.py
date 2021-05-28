@@ -3,7 +3,6 @@ from django.db.models import Count
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework import generics
-from user.models import User
 from .models import Post, PostLikes
 from .filters import PostListFilter
 from .serializers import (
@@ -61,5 +60,5 @@ class PostLikesListViewByDate(generics.ListAPIView):
         queryset = PostLikes.objects.values('post').filter(
             date_liked__gte = date_from, 
             date_liked__lte = date_to
-        ).annotate(likes=Count('post')).order_by('date_liked')
+        ).annotate(likes=Count('post')).order_by('-date_liked')
         return queryset

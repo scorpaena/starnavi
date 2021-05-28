@@ -6,5 +6,4 @@ class UserAdmin(admin.ModelAdmin):
     list_filter = ('email', 'is_staff', 'is_active')
     search_fields = ('email', 'nickname', 'first_name', 'last_name')
 
-
 admin.site.register(User, UserAdmin)
